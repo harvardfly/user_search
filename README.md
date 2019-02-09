@@ -1,4 +1,4 @@
-# 基于Tornado和ElasticSearch的用户搜索服务,用户创建并异步插入到ES,提供搜索API,并Docker化部署
+# 技术选型
 ```
 web框架：Tornado
 数据库：MySQL
