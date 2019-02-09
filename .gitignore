@@ -106,3 +106,5 @@ db.sql*
 static/*
 
 docker-compose.yml
+
+settings_local.py
