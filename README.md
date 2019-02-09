@@ -1,5 +1,5 @@
 # 基于Tornado和ElasticSearch的用户搜索服务,用户创建并异步插入到ES,提供搜索API,并Docker化部署
-```angular2html
+```
 web框架：Tornado
 数据库：MySQL
 ORM：peewee
@@ -11,7 +11,6 @@ ORM：peewee
 
 # Docker 部署
 
-# 配置
 ### 创建日志目录
 这个日志路径配置在settings - LOGGING - handlers
 ```
@@ -19,13 +18,13 @@ $ sudo mkdir -p /var/log/user_search
 $ sudo chmod -R 777 /var/log/user_search
 ```
 
-# redis
+### redis image
 ```
 $ cd user_search
 $ sudo docker build -t user_search_redis -f docker/redis/Dockerfile .
 ```
 
-### 配置
+### 配置redis
 ```
 $ cp redis.conf.example redis.conf
 ```
@@ -39,19 +38,19 @@ $ cp redis.conf.example redis.conf
 
 注：保证配置里面的端口号与docker-compose.yml里面的port对应上。
 
-# web
+### web image
 ```
 $ cd user_search
 $ sudo docker build -t user_search -f docker/app/Dockerfile .
 ```
 
-# nginx
+### nginx image
 ```
 $ cd user_search
 $ sudo docker build -t user_search_nginx -f docker/nginx/Dockerfile .
 ```
 
-### 配置
+### 配置nginx
 ```
 $ cp user_search_conf.example user_search_conf
 ```
@@ -60,7 +59,7 @@ $ cp user_search_conf.example user_search_conf
 
 注：保证配置里面的端口号与docker-compose.yml里面的port对应上。
 
-# 部署
+### 部署
 ```
 $ cp docker-compose.yml.example docker-compose.yml
 
