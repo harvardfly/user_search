@@ -107,4 +107,4 @@ static/*
 
 docker-compose.yml
 
-settings_local.py
+/settings_local.py
