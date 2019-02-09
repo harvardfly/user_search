@@ -1,4 +1,5 @@
 # 技术选型
+```
 ## web框架：Tornado
 ## 数据库：MySQL
 ## ORM：peewee
@@ -6,6 +7,7 @@
 ## 表单验证：wtform
 ## 异步：协程、aiomysql、peewee-async、Celery
 ## 部署：Docker
+```
 
 # Docker 部署
 
