@@ -1,0 +1,65 @@
+#
+# 项目部署版
+# 部署：sudo docker-compose up -d
+
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: json-file
+  options:
+    max-size: '12m'
+    max-file: '5'
+
+x-volumes:
+  &project-home-dir
+  .:/proj
+
+
+services:
+  redis:
+    image: user_search_redis:latest
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+  web:
+    image: user_search:latest
+    ports:
+      - "8888"
+    command: python3 server.py
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - .:/proj
+    depends_on:
+      - redis
+
+  nginx:
+    image: user_search_nginx:latest
+    ports:
+      - "8888:8888"
+    command: nginx -g "daemon off;"
+    volumes:
+      - *project-home-dir
+      - ./docker/nginx/conf/user_search_conf:/etc/nginx/sites-enabled/user_search_conf
+    logging: *default-logging
+    depends_on:
+      - web
+
+  celery:
+    image: user_search:latest
+    command: celery worker -A user_search -l info
+    logging: *default-logging
+    depends_on:
+      - web
+    volumes:
+      - .:/proj

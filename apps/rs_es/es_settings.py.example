@@ -1,0 +1,9 @@
+"""
+ELASTIC的配置文件
+"""
+
+ELASTIC_HOST = "http://192.168.33.11:9200"
+ELASTIC_AUTH = ""
+
+# ES数据存储的索引名称
+RS_INDEX_NAME = 'user'

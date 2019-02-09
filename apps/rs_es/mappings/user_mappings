@@ -1,0 +1,44 @@
+PUT user
+{
+  "mappings": {
+    "es_user": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "create_time": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+        },
+        "update_time": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+        },
+        "birthday": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        },
+        "username": {
+          "type": "keyword"
+        },
+        "description": {
+          "type": "text"
+        },
+        "address": {
+          "type": "text"
+        },
+        "first_name": {
+          "type": "text",
+          "copy_to": "full_name"
+        },
+        "last_name": {
+          "type": "text",
+          "copy_to": "full_name"
+        },
+        "full_name": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
