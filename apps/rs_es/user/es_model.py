@@ -1,6 +1,6 @@
 from math import ceil
 from elasticsearch_dsl import (
-    DocType, Keyword, Q
+    DocType, Keyword, Q, Search
 )
 from apps.rs_es.es_base import EsBase
 
@@ -175,8 +175,12 @@ class EsUser(EsBase, DocType):
         if not query_filter:
             raise ('不存在任何的搜索条件')
 
-        search_obj = cls.search().extra(
-            from_=(page - 1) * page_size, size=page_size
+        search_obj = Search(
+            using=cls.get_connections(),
+            index=cls.rs_index_name
+        ).extra(
+            from_=(page - 1) * page_size,
+            size=page_size
         ).sort(order)
 
         search_obj = search_obj.query(query_filter)

@@ -13,7 +13,7 @@ from apps.rs_es.es_settings import (
 logger = logging.getLogger('rs_es')
 
 # server connect
-connections.create_connection(
+connections = connections.create_connection(
     hosts=ELASTIC_HOST,
     http_auth=ELASTIC_AUTH
 )
@@ -26,6 +26,10 @@ class EsBase(object):
 
     time_zone = "Asia/Shanghai"
     rs_index_name = RS_INDEX_NAME
+
+    @classmethod
+    def get_connections(cls):
+        return connections
 
     @staticmethod
     def snake_case(name):
