@@ -18,6 +18,7 @@ x-volumes:
 
 services:
   redis:
+    restart: always
     image: user_search_redis:latest
     ports:
       - "6379:6379"
@@ -29,6 +30,7 @@ services:
         max-file: "10"
 
   web:
+    restart: always
     image: user_search:latest
     ports:
       - "8888"
@@ -44,6 +46,7 @@ services:
       - redis
 
   nginx:
+    restart: always
     image: user_search_nginx:latest
     ports:
       - "8888:8888"
@@ -56,6 +59,7 @@ services:
       - web
 
   celery:
+    restart: always
     image: user_search:latest
     command: celery worker -A user_search -l info
     logging: *default-logging
