@@ -3,7 +3,7 @@ aiomysql==0.0.19
 asn1crypto==0.24.0
 aspy.yaml==1.1.1
 cached-property==1.5.1
-celery==4.2.0
+celery==5.2.2
 cffi==1.11.5
 cfgv==1.4.0
 cryptography==2.5
